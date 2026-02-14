@@ -22,7 +22,8 @@ jobs:
       - name: 3. py
         run: pip install -r requirements.txt && python main.py &
 
-      - name: 3. cloudflare tunnel
-        run: docker run --network="host" cloudflare/cloudflared:latest tunnel --no-autoupdate run --token ${{secrets.PLAYER_CF_TOKEN}}
-
+      - name: 4. cloudflare tunnel
+        run: docker run -d --network="host" cloudflare/cloudflared:latest tunnel --no-autoupdate run --token ${{secrets.PLAYER_CF_TOKEN}}
+      - name: 5 py
+        run: python -m http.server 8888
 
